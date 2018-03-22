@@ -1,8 +1,8 @@
 Package.describe({
-  summary: 'Simple and intuative useraccounts for react',
+  summary: 'Simple and intuative accounts view layer with react',
   version: '1.0.0',
   name: 'roygi:useraccounts-react',
-  git: 'https://github.com/something/something.git'
+  git: 'https://github.com/royGil/useraccounts-react.git'
 })
 
 Package.onUse(api => {

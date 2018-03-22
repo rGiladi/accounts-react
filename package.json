@@ -1,7 +1,7 @@
 {
   "name": "useraccounts-react",
   "version": "1.0.0",
-  "description": "Meteor's user account view layer for react",
+  "description": "Meteor's accounts view layer for react",
   "main": "index.js",
   "scripts": {
     "build": "babel lib -d build",
