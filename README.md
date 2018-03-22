@@ -55,3 +55,31 @@ However, it's perfectly fine to set client configurations (like texts) only on t
 
 
 * Develop your own theme ([see guidelines](#theme-developing))
+
+### Local Development
+
+Wanna help or just play abit with the code? Here are several steps you can take for setting up a good development setup.
+
+There are two setup options here:
+
+1. Using [meteor-client-bundler](https://github.com/Urigo/meteor-client-bundler) so you can develop client stuff easily with webpack and [react-hot-loader](https://github.com/gaearon/react-hot-loader).
+
+  * `git clone https://github.com/royGil/useraccounts-react`
+  * `cd useraccounts-react && npm install`
+  * `npm link`
+  * `cd dev && npm install`
+  * `npm install -g meteor-client-bundler`
+  * `meteor-client bundle -s server`
+  * `npm run start` (or `npm run server` and `npm run client` on different terminals)
+
+  Here, useraccounts gets imported as an npm package from meteor's `imports` folder on both ends. The advantage here is that the client is separated from the server so updates to the local lib folder wont force the browser to refresh on each change (but instead use webpack and react-hot-loader to push changes).
+
+2. Using meteor's `packages` folder.
+
+  * `git clone https://github.com/royGil/useraccounts-react && mv useraccounts-react roygi:useraccoutns-react`
+  * Put the cloned folder in the `packages` folder inside any meteor project
+  * `meteor add roygi:useraccoutns-react`
+
+  Just edit the files inside that package folder and meteor will just reload on every change
+
+If you want to add a feature or anything else please follow the `contributing` section
