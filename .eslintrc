@@ -1,19 +1,22 @@
 {
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true,
-            "experimentalObjectRestSpread": true
-        }
-    },
-    "plugins": [
-        "react"
-    ],
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
-    rules: {
-      "react/prop-types": 0
-      }
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+      "react"
+  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  globals: {
+    'Meteor': true
+  },
+  rules: {
+    "react/prop-types": 0
+  }
 }
