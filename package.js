@@ -8,10 +8,14 @@ Package.describe({
 Package.onUse(api => {
   api.versionsFrom('1.6.1')
 
-  api.use('ecmascript')
-  api.use('accounts-base')
-  api.use('accounts-password')
-  api.use('mdg:validated-method')
+  api.use([
+    'ecmascript',
+    'accounts-base',
+    'accounts-password',
+    'mdg:validated-method'
+  ], ['client', 'server'])
+
+  api.use('http', 'server')
 
   api.mainModule('index.js', ['client', 'server'])
 })
