@@ -1,7 +1,7 @@
 Package.describe({
   summary: 'Simple and intuative accounts view layer with react',
   version: '1.0.0',
-  name: 'roygi:useraccounts-react',
+  name: 'meteoreact:accounts',
   git: 'https://github.com/royGil/useraccounts-react.git'
 })
 
