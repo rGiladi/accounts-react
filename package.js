@@ -15,6 +15,8 @@ Package.onUse(api => {
     'mdg:validated-method'
   ], ['client', 'server'])
 
+  api.use('service-configuration', { weak: true })
+
   api.use('http', 'server')
 
   api.mainModule('index.js', ['client', 'server'])
