@@ -1,8 +1,89 @@
 # **Meteor Accounts UI for React**
 
-* `meteor add roygi:useraccounts-react`
+`meteor add meteoreact:accounts`
 
-### Configuration
+* [Goals](#Goals)
+* [Setup](#Setup)
+  * [Styled versions](#Styled)
+  * [Routing](#Routing)
+  * [Configuration](#Configuration)
+
+
+<a name='Goals' />
+## Goals
+
+This package has multiple goals:
+
+1. Be an almost identical fork of the great [useraccounts](https://github.com/meteor-useraccounts/core) package with the difference of being dependent only on react (no blaze/jquery/templating).
+
+2. Allow an easy migration path for applications which already use the useraccounts package.
+
+3. Make sense. The code should be understandable, no huge files with lots of conditions and unrelated contexts.
+
+4. Be Actively maintained.
+
+
+<a name='Setup' />
+## Setup
+
+<a name='Styled' />
+#### Styled versions
+Pick the package that suit your app. (Create it if it doesn't exist!)
+* [meteoreact:unstyled](https://github.com/royGil/accounts-unstyled)
+* [meteoreact:semantic-ui](https://github.com/royGil/accounts-semantic)
+
+<a name='Routing' />
+#### Routing
+This package currently supports react-router (should also work with flow-router but it has not been checked yet.)
+
+```javascript
+import React, { Component } from 'react'
+import { Redirect } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
+import { AccountsReact, AccountsReactComponent } from 'meteor/meteoreact:accounts'
+
+class Authentication extends Component {
+
+  render () {
+    const arState = this.arState
+
+    return (
+      <Switch>
+        <Route exact path='/sign-in'          component={arState} />
+        <Route exact path='/sign-up'          component={arState} />
+        <Route exact path='/forgot-password'  component={arState} />
+        <Route exact path='/change-password'  component={arState} />
+        <Route exact path='/reset-password/:token' component={arState} />
+      </Switch>
+    )
+  }
+
+  arState = ({ match, history }) => {
+    const { mapStateToRoute } = AccountsReact.config
+    const { path, params } = match
+    const state = Object.keys(mapStateToRoute).find(key => mapStateToRoute[key] === path)
+
+    if (Meteor.userId() && path !== '/change-password') {
+      return (<Redirect to='/' />)
+    }
+
+    return (
+      <AccountsReactComponent
+        state={state}
+        history={history}
+        token={params.token}
+      />
+    )
+  }
+}
+
+export default Authentication
+```
+
+##### React Router
+
+<a name='Configuration' />
+## Configuration
 
 * Configuration should be the same on both ends. A good place to put the file is `imports/both/startup`.
 
@@ -10,76 +91,3 @@
 However, it's perfectly fine to set client configurations (like texts) only on the client and vice versa.
 
 * Configuration must also run before Meteor's startup, so dont put it inside Meteor.startup function
-
-```javascript
-  import { AccountsReact } from 'meteor/roygi:useraccounts-react'
-
-  AccountsReact.configure({
-    hideSignInLink: true,
-    hideSignUpLink: true,
-    validateOnChange: true,
-    texts: {
-      button: {
-        signUp: 'Register'
-      },
-      title: {
-        signUp: 'Create Your Account'
-      },
-      links: {
-        toSignUp: 'Don\'t have an account? Register'
-      }
-
-      // ...
-    }
-  })
-```
-
-### Styling Components
-
-* You can either override components manually
-
-```javascript
-  import { AccountsReact } from 'meteor/roygi:useraccounts-react'
-
-  AccountsReact.style({
-    ButtonField: <YourCustomButton />,
-    InputField: <YourCustomInput />
-
-    // ...
-  })
-```
-
-* Pick a theme based on your favourite library
-
-  * Semantic UI `meteor add roygi:useraccounts-semantic`
-
-
-* Develop your own theme ([see guidelines](#theme-developing))
-
-### Local Development
-
-Wanna help or just play abit with the code? Here are several steps you can take for setting up a good development setup.
-
-There are two setup options here:
-
-1. Using [meteor-client-bundler](https://github.com/Urigo/meteor-client-bundler) so you can develop client stuff easily with webpack and [react-hot-loader](https://github.com/gaearon/react-hot-loader).
-
-  * `git clone https://github.com/royGil/useraccounts-react`
-  * `cd useraccounts-react && npm install`
-  * `npm link`
-  * `cd dev && npm install`
-  * `npm install -g meteor-client-bundler`
-  * `meteor-client bundle -s server`
-  * `npm run start` (or `npm run server` and `npm run client` on different terminals)
-
-  Here, useraccounts gets imported as an npm package from meteor's `imports` folder on both ends. The advantage here is that the client is separated from the server so updates to the local lib folder wont force the browser to refresh on each change (but instead use webpack and react-hot-loader to push changes).
-
-2. Using meteor's `packages` folder.
-
-  * `git clone https://github.com/royGil/useraccounts-react && mv useraccounts-react roygi:useraccoutns-react`
-  * Put the cloned folder in the `packages` folder inside any meteor project
-  * `meteor add roygi:useraccoutns-react`
-
-  Just edit the files inside that package folder and meteor will just reload on every change
-
-If you want to add a feature or anything else please follow the `contributing` section
