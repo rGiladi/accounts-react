@@ -10,6 +10,7 @@
 
 
 <a name='Goals' />
+
 ## Goals
 
 This package has multiple goals:
@@ -24,15 +25,18 @@ This package has multiple goals:
 
 
 <a name='Setup' />
+
 ## Setup
 
 <a name='Styled' />
+
 #### Styled versions
 Pick the package that suit your app. (Create it if it doesn't exist!)
 * [meteoreact:unstyled](https://github.com/royGil/accounts-unstyled)
 * [meteoreact:semantic-ui](https://github.com/royGil/accounts-semantic)
 
 <a name='Routing' />
+
 #### Routing
 This package currently supports react-router (should also work with flow-router but it has not been checked yet.)
 
