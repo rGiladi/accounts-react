@@ -1,7 +1,8 @@
 Package.describe({
-  summary: 'Simple and intuative accounts view layer with react',
-  version: '1.0.0',
   name: 'meteoreact:accounts',
+  summary: 'Simple and intuative accounts view layer with react',
+  version: '1.1.0',
+  documentation: 'README.md',
   git: 'https://github.com/royGil/accounts-react'
 })
 
@@ -12,10 +13,11 @@ Package.onUse(api => {
     'ecmascript',
     'accounts-base',
     'accounts-password',
-    'mdg:validated-method'
+    'mdg:validated-method@1.1.0'
   ], ['client', 'server'])
 
-  api.use('react-meteor-data')
+  api.use('react-meteor-data@0.2.16', 'client')
+
   api.use('service-configuration', { weak: true })
   api.use('http', 'server')
 
