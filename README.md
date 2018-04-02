@@ -44,7 +44,7 @@ This package currently supports react-router (should also work with flow-router 
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
-import { AccountsReact, AccountsReactComponent } from 'meteor/meteoreact:accounts'
+import { AccountsReactComponent } from 'meteor/meteoreact:accounts'
 
 class Authentication extends Component {
 
@@ -63,9 +63,7 @@ class Authentication extends Component {
   }
 
   arState = ({ match, history }) => {
-    const { mapStateToRoute } = AccountsReact.config
     const { path, params } = match
-    const state = Object.keys(mapStateToRoute).find(key => mapStateToRoute[key] === path)
 
     if (Meteor.userId() && path !== '/change-password') {
       return (<Redirect to='/' />)
@@ -73,8 +71,8 @@ class Authentication extends Component {
 
     return (
       <AccountsReactComponent
-        state={state}
         history={history}
+        route={path}
         token={params.token}
       />
     )
