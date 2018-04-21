@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "babel lib -d build",
-    "build:watch": "babel lib -w -d build"
+    "build:watch": "babel lib -w -d build",
+    "publish": "meteor publish",
+    "start": "meteor -- --run --settings settings.json"
   },
   "author": "Roy Giladi",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "deepmerge": "^2.1.0"
