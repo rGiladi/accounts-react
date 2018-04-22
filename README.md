@@ -2,22 +2,32 @@
 
 `meteor add meteoreact:accounts`
 
+Feel free to ask anything, open issues and create some pull requests.
+
+**A huge credit goes to the [`useraccounts`](https://github.com/meteor-useraccounts/core) package and the people behind it.**
+
+This package has been created to be used in one of my projects which was purely React.
+Although the original useraccounts package [can be used](https://www.meteor.com/tutorials/react/adding-user-accounts) in react, it is dependent on blaze and jquery which are both useless when developing with react.
+
+Right now, you might find that there are several features which hasn't been included in this package. Please open an issue if you need a feature and think it will benefit the community.
+
 * [Goals](#Goals)
 * [Setup](#Setup)
   * [Styled versions](#Styled)
   * [Routing](#Routing)
   * [States](#States)
-  * [Configuration](#Configuration)
-    * [Hooks](#Hooks)
-    * [ReCaptcha](#ReCaptcha)
-    * [OAuth](#OAuth)
-    * [Redirects](#Redirects)
-    * [Custom routes]('#Custom-Routes')
+* [Configuration](#Configuration)
+  * [Hooks](#Hooks)
+  * [ReCaptcha](#ReCaptcha)
+  * [OAuth](#OAuth)
+  * [Redirects](#Redirects)
+  * [Custom routes]('#Custom-Routes')
   * [Fields](#Fields)
     * [Add fields](#Add-Fields)
     * [Remove fields](#Remove-Fields)
     * [Edit fields](#Edit-Fields)
-  * [Override Styling](#Override-Styling)
+  * [Texts](#Texts)
+* [Override Styling](#Override-Styling)
 
 
 <a name='Goals' />
@@ -41,7 +51,7 @@ This package has multiple goals:
 
 <a name='Styled' />
 
-#### Styled versions
+### Styled versions
 Pick the package that suit your app. ([Create it if it doesn't exist!](https://github.com/royGil/accounts-react/issues/6))
 * [meteoreact:unstyled](https://github.com/royGil/accounts-unstyled)
 * [meteoreact:semantic-ui](https://github.com/royGil/accounts-semantic)
@@ -51,12 +61,12 @@ Pick the package that suit your app. ([Create it if it doesn't exist!](https://g
 
 <a name='Routing' />
 
-#### Routing
+### Routing
 This package currently supports react-router.
 
 <a name='React-Router-Example' />
 
-##### React Router
+#### React Router
 
 If you want to use different paths for your routes see [custom routes](#Custom-Routes)
 
@@ -105,7 +115,7 @@ export default Authentication
 
 <a name='States' />
 
-## States
+### States
 
 When you render AccountsReactComponent there are 3 ways to make it render the form you want
 
@@ -359,7 +369,7 @@ You can easily override it with
 
 <a name='Fields' />
 
-## Fields
+### Fields
 
 Form fields are defined as objects in an array and can be easily customized to your needs.
 You can edit, add or remove fields directly or via one of the built in functions (addField, removeField ...)
@@ -387,6 +397,7 @@ The supported properties are listed in the following table.
 You can see each state default fields [here](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L78)
 
 Examples of **func** and **re** properties.
+
 [func](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L137)
 ```javascript
 {
@@ -436,7 +447,7 @@ Examples of **func** and **re** properties.
 }
 ```
 
-<a name='Add-Fields />
+<a name='Add-Fields' />
 
 #### Add Fields
 To add additional fields, you must specify the state you want to mutate, and an array of object(s) containing your field's data.
@@ -468,6 +479,31 @@ This functionality is not implemented yet, You can [help](https://github.com/roy
 This functionality is not implemented yet, You can [help](https://github.com/royGil/accounts-react/issues/4)
 
 
+<a name='Texts' />
+
+### Texts
+
+Configuring the text to be used by the forms is done via the `AccountsReact.configure` function.
+
+The default configuration object contains a `texts` property which you can view [here](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L206)
+
+Here is an example of how to override those
+
+```javascript
+import { AccountsReact } from 'meteor/meteoreact:accounts'
+AccountsReact.configure({
+  texts: {
+    button: {
+      changedPwd: 'Change your password!'
+    },
+    info: {
+      emailSent: 'Check your inbox!'
+    },
+    loginForbiddenMessage: 'The username or password is incorrect'
+  }
+})
+```
+
 <a name='Override-Styling' />
 
 ## Override Styling
@@ -476,7 +512,7 @@ Lets say that you are using `semantic-ui-react` and `meteoreact:accounts-semanti
 
 Instead of copying the full package into your local *packages* folder and directly change the code (which is totally legitimate and will work just fine!) you can look at the source code of that package and copy only the implementation of the input field into your project.
 
-From there you can edit (*almost) anything you'd like. Save the file when you are done and then add it like so:
+From there you can edit (almost*) anything you'd like. Save the file when you are done and then add it like so:
 
 ```javascript
 import { AccountsReact } from 'meteor/meteoreact:accounts'
@@ -496,4 +532,4 @@ You can override any of the following fields
 [`TitleField`](https://github.com/royGil/accounts-semantic/blob/master/Title.js),
 [`ErrorsField`](https://github.com/royGil/accounts-semantic/blob/master/Errors.js)
 
-* Dont edit or remove anything that might break the core functionality (like the onChange handlers for example)
+*Dont edit or remove anything that might break the core functionality (like the onChange handlers for example)
