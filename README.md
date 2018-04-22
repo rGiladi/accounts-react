@@ -12,8 +12,12 @@
     * [ReCaptcha](#ReCaptcha)
     * [OAuth](#OAuth)
     * [Redirects](#Redirects)
-    * [Custom Routes]('#Custom-Routes')
+    * [Custom routes]('#Custom-Routes')
   * [Fields](#Fields)
+    * [Add fields](#Add-Fields)
+    * [Remove fields](#Remove-Fields)
+    * [Edit fields](#Edit-Fields)
+  * [Override Styling](#Override-Styling)
 
 
 <a name='Goals' />
@@ -38,9 +42,12 @@ This package has multiple goals:
 <a name='Styled' />
 
 #### Styled versions
-Pick the package that suit your app. (Create it if it doesn't exist!)
+Pick the package that suit your app. ([Create it if it doesn't exist!](https://github.com/royGil/accounts-react/issues/6))
 * [meteoreact:unstyled](https://github.com/royGil/accounts-unstyled)
 * [meteoreact:semantic-ui](https://github.com/royGil/accounts-semantic)
+
+
+*If you've created a package and want to include it here, please open a pull request with a link to the package on [atmoshperejs](https://atmospherejs.com/)*
 
 <a name='Routing' />
 
@@ -353,3 +360,140 @@ You can easily override it with
 <a name='Fields' />
 
 ## Fields
+
+Form fields are defined as objects in an array and can be easily customized to your needs.
+You can edit, add or remove fields directly or via one of the built in functions (addField, removeField ...)
+
+The supported properties are listed in the following table.
+**Note that you can also specify your own properties**
+
+| Property             | Type             | Required |                 Description
+| -------------------- | -----------------| -------- | ----------------------------------------  |
+| _id                  | String           |    X     | A unique field's id/name (internal use only) to be also used  as attribute name into Meteor.user().profile in case it identifies an additional sign up field. Usually all lowercase letters
+| type                 | String           |    X     | Specifies the input element type. At the moment supported inputs are: password, email, text, select, radio
+| displayName          | String           |          | The field's label text. The text label is shown only if showLabels options is set to true
+| errStr               | String           |          | Error message to display in case of a false validation.
+| exclude              | Boolean          |          | (On sign up only) If set to true the field will be excluded from the new user object
+| func                 | Function         |          | Specify a custom function for validation. (example below)
+| minLength            | Integer          |          | If specified, requires the content of the field to be at least `minLength` characters
+| maxLength            | Integer          |          | If specified, require the content of the field to be at most maxLength characters.
+| options              | [Object]         |          | In case type property is set to "select" or "radio", this field must be set to an array of options to be used
+| placeholder          | String           |          | The field's (input) placeholder text. The place-holder is shown only if showPlaceholders option is set to true
+| re                   | RegExp           |          | Specify a regular expression to validate against. (example below)
+| required             | Boolean          |          | If set to true the corresponding field cannot be left blank
+
+**The original user accounts package supports several more properties. Pull requests are more then welcome!**
+
+You can see each state default fields [here](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L78)
+
+Examples of **func** and **re** properties.
+[func](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L137)
+```javascript
+{
+  _id: 'confirmPassword',
+  displayName: 'Confirm password',
+  type: 'password',
+  placeholder: 'Re-enter your password',
+  errStr: 'Password doesn\'t match',
+  exclude: true,
+  func: (fields, fieldObj, value, model, errorsArray) => {
+    /*
+      fields:      Current form fields array
+      fieldObj:    This object
+      value:       This field's value
+      model:       Current form values object
+      errorsArray: Current form errors array
+    */
+
+    if (!this.config.confirmPassword) {
+      return true
+    }
+
+    // check that passwords match
+    const { password } = model
+    const { _id, errStr } = fieldObj
+
+    if (typeof password === 'string') {
+      if (!value || (value !== password)) {
+        errorsArray.push({ _id, errStr })
+        return
+      }
+    }
+
+    return true
+  }
+}
+```
+
+[re](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L118)
+```javascript
+{
+  _id: 'email',
+  displayName: 'Email',
+  placeholder: 'Enter your email',
+  re: regExp.Email,
+  errStr: 'Please enter a valid email'
+}
+```
+
+<a name='Add-Fields />
+
+#### Add Fields
+To add additional fields, you must specify the state you want to mutate, and an array of object(s) containing your field's data.
+
+```javascript
+import { AccountsReact } from 'meteor/meteoreact:accounts'
+
+AccountsReact.addFields('signUp', [
+  {
+    _id: 'fullName',
+    displayName: 'Full Name',
+    placeholder: 'Enter your full name',
+    minLength: 4,
+    maxLength: 70,
+    required: true,
+    errStr: 'This field must contain at least 4 characters and no more than 70'
+  }
+])
+```
+
+<a name='Remove-Fields' />
+
+#### Remove Fields
+This functionality is not implemented yet, You can [help](https://github.com/royGil/accounts-react/issues/3)
+
+<a name='Edit-Fields' />
+
+#### Edit Fields
+This functionality is not implemented yet, You can [help](https://github.com/royGil/accounts-react/issues/4)
+
+
+<a name='Override-Styling' />
+
+## Override Styling
+
+Lets say that you are using `semantic-ui-react` and `meteoreact:accounts-semantic` and want to add a simple description below each input field.
+
+Instead of copying the full package into your local *packages* folder and directly change the code (which is totally legitimate and will work just fine!) you can look at the source code of that package and copy only the implementation of the input field into your project.
+
+From there you can edit (*almost) anything you'd like. Save the file when you are done and then add it like so:
+
+```javascript
+import { AccountsReact } from 'meteor/meteoreact:accounts'
+import YourInputField from '...'
+
+AccountsReact.style({
+    InputField: YourInputField
+})
+```
+
+You can override any of the following fields
+
+[`InputField`](https://github.com/royGil/accounts-semantic/blob/master/Input.js),
+[`SelectField`](https://github.com/royGil/accounts-semantic/blob/master/Select.js),
+[`RadioField`](https://github.com/royGil/accounts-semantic/blob/master/Radio.js),
+[`SubmitField`](https://github.com/royGil/accounts-semantic/blob/master/Submit.js),
+[`TitleField`](https://github.com/royGil/accounts-semantic/blob/master/Title.js),
+[`ErrorsField`](https://github.com/royGil/accounts-semantic/blob/master/Errors.js)
+
+* Dont edit or remove anything that might break the core functionality (like the onChange handlers for example)
