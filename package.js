@@ -1,7 +1,7 @@
 Package.describe({
   name: 'meteoreact:accounts',
   summary: 'Simple and intuative accounts view layer with react',
-  version: '1.1.6',
+  version: '1.1.7',
   documentation: 'README.md',
   git: 'https://github.com/royGil/accounts-react'
 })
