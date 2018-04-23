@@ -1,5 +1,7 @@
 # **Meteor Accounts UI for React**
 
+Live example: https://react-accounts-demo.herokuapp.com/
+
 `meteor add meteoreact:accounts`
 
 Feel free to ask anything, open issues and create some pull requests.
