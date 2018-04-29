@@ -3,7 +3,8 @@
 Live example: https://react-accounts-demo.herokuapp.com/
 
 `meteor add meteoreact:accounts`
-(for now you will also have to `npm install --save-dev deepmerge`), this will be fixed soon
+
+right now you will also have to `npm install --save-dev deepmerge`, this will be fixed soon
 
 Feel free to ask anything, open issues and create some pull requests.
 
