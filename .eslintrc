@@ -15,7 +15,9 @@
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   globals: {
     'Meteor': true,
-    'document': true
+    'document': true,
+    'describe': true,
+    'it': true
   },
   rules: {
     "react/prop-types": 0

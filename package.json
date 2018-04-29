@@ -4,10 +4,9 @@
   "description": "Meteor's accounts view layer for react",
   "main": "index.js",
   "scripts": {
-    "build": "babel lib -d build",
-    "build:watch": "babel lib -w -d build",
     "publish": "meteor publish",
-    "start": "meteor -- --run --settings settings.json"
+    "start": "meteor -- --run --settings settings.json",
+    "test": "meteor test-packages ./ --driver-package cultofcoders:mocha"
   },
   "author": "Roy Giladi",
   "license": "MIT",
@@ -16,8 +15,9 @@
     "deepmerge": "^2.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.2",
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -25,6 +25,7 @@
     "eslint-watch": "^3.1.3",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "sinon": "^4.5.0"
   }
 }

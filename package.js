@@ -23,3 +23,21 @@ Package.onUse(api => {
 
   api.mainModule('index.js', ['client', 'server'])
 })
+
+Package.onTest(api => {
+  api.use([
+    'ecmascript',
+    'accounts-base',
+    'accounts-password',
+    'meteoreact:accounts',
+    'meteoreact:accounts-unstyled',
+    'mdg:validated-method@1.1.0',
+    'react-meteor-data@0.2.16',
+    'cultofcoders:mocha'
+  ])
+
+  api.use('http', 'server')
+
+  api.mainModule('__tests__/client.test.js', 'client')
+  api.mainModule('__tests__/server.test.js', 'server')
+})
