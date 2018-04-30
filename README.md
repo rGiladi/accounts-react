@@ -32,6 +32,7 @@ Right now, you might find that there are several features which hasn't been incl
     * [Edit fields](#Edit-Fields)
   * [Texts](#Texts)
 * [Override Styling](#Override-Styling)
+* [Contributing](#Contributing)
 
 
 <a name='Goals' />
@@ -537,3 +538,60 @@ You can override any of the following fields
 [`ErrorsField`](https://github.com/royGil/accounts-semantic/blob/master/Errors.js)
 
 *Dont edit or remove anything that might break the core functionality (like the onChange handlers for example)
+
+<a name='Contributing' />
+
+## Contributing
+
+1. Fork this repo
+
+2. `git clone https://github.com/royGil/accounts-react-demo && cd accounts-react-demo`
+
+3. `git clone https://github.com/{your_account}/accounts-react packages/meteoreact:accounts`
+4. `meteor npm install`
+
+From this point you can make changes to the package folder and run the demo app to see them.
+
+_Note that if you want to test anything related to the social buttons you'll have to include a proper **settings.json** file ([see example below](#settings.json-example))_
+
+To commit your changes
+
+1. `cd packages/meteoreact:accounts`
+
+2. `npm test` and make sure there are no errors
+
+3. Push your changes (**from within the "meteoreact:accounts" folder!**) and create a PR from your fork on github.
+
+I'll appreciate if you write tests for your new commit but its not a requirement.
+
+-------------
+
+<a name='settings.json-example' />
+
+```javascript
+{
+  "services": {
+    "google": {
+      "loginStyle": "popup",
+      "clientId": "XXX",
+      "secret": "XXX"
+    },
+    "facebook": {
+      "loginStyle": "popup",
+      "appId": "XXX",
+      "secret": "XXX"
+    },
+    "github": {
+      "loginStyle": "popup",
+      "clientId": "XXX",
+      "secret": "XXX"
+    },
+    "twitter": {
+      "loginStyle": "popup",
+      "consumerKey": "XXX",
+      "secret": "XXX"
+    }
+  }
+}
+
+```

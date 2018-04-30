@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "publish": "meteor publish",
-    "start": "meteor -- --run --settings settings.json",
-    "test": "meteor test-packages ./ --driver-package cultofcoders:mocha"
+    "test": "meteor test-packages ./ --driver-package cultofcoders:mocha --port 3006"
   },
   "author": "Roy Giladi",
   "license": "MIT",
