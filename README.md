@@ -558,9 +558,11 @@ To commit your changes
 
 1. `cd packages/meteoreact:accounts`
 
-2. `npm test` and make sure there are no errors
+2. `npm install` (so you can run tests)
 
-3. Push your changes (**from within the "meteoreact:accounts" folder!**) and create a PR from your fork on github.
+3. `npm test` and make sure there are no errors
+
+4. Push your changes (**from within the "meteoreact:accounts" folder!**) and create a PR from your fork on github.
 
 I'll appreciate if you write tests for your new commit but its not a requirement.
 
