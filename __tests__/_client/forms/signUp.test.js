@@ -2,16 +2,16 @@ import React              from 'react'
 import { shallow, mount } from 'enzyme'
 import { expect }         from 'chai'
 import sinon              from 'sinon'
-import SignIn             from '../../../lib/AccountsReactComponent/signIn'
+import SignUp             from '../../../lib/AccountsReactComponent/signUp'
 import AccountsReact      from '../../../lib/AccountsReact'
 
 const { config } = AccountsReact
 
-describe('SignIn Form', () => {
+describe('SignUp Form', () => {
 
   const getProps = (overrideDefaults = {}) => {
     return {
-      currentState: 'signIn',
+      currentState: 'signUp',
       defaults: {
         ...config,
         ...overrideDefaults
@@ -20,8 +20,8 @@ describe('SignIn Form', () => {
     }
   }
 
-  const shallowWrapper = shallow(<SignIn {...getProps()} />)
-  const mountWrapper   = mount(<SignIn {...getProps()} />)
+  const shallowWrapper = shallow(<SignUp {...getProps()} />)
+  const mountWrapper   = mount(<SignUp {...getProps()} />)
 
 
   it('should render a form', () => {
@@ -48,34 +48,19 @@ describe('SignIn Form', () => {
     })
 
     it('should not render a signIn link if not configured', () => {
-      const _props = getProps({ hideSignUpLink: true })
-      const wrapper = shallow(<SignIn {..._props} />)
+      const _props = getProps({ hideSignInLink: true })
+      const wrapper = mount(<SignUp {..._props} />)
 
-      expect(wrapper.find('.signInLink').exists()).to.equal(false)
-    })
-
-    it('should render a forgotPwd link if configured', () => {
-      const _props = getProps({ showForgotPasswordLink: true })
-      const wrapper = shallow(<SignIn {..._props} />)
-
-      expect(wrapper.find('.forgotPwd-link').exists()).to.equal(true)
-    })
-
-    it('should not render a forgotPwd link if not configured', () => {
-
-      expect(mountWrapper.find('.forgotPwd-link').exists()).to.equal(false)
+      expect(wrapper.find('.signIn-link').exists()).to.equal(false)
     })
 
     it('should call the redirect function when clicking on a link', () => {
-      const _props = getProps({ showForgotPasswordLink: true })
-      const wrapper = mount(<SignIn {..._props} />)
-      const instance = wrapper.instance()
+      const instance = mountWrapper.instance()
       const spy = sinon.spy(instance, 'redirect')
 
-      wrapper.find('.signIn-link').simulate('mouseDown')
-      wrapper.find('.forgotPwd-link').simulate('mouseDown')
+      mountWrapper.find('.signIn-link').simulate('mouseDown')
 
-      expect(spy.calledTwice).to.equal(true)
+      expect(spy.calledOnce).to.equal(true)
     })
   })
 })
