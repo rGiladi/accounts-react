@@ -5,7 +5,7 @@ import sinon              from 'sinon'
 import BaseForm           from '../../../lib/AccountsReactComponent/baseForm'
 import AccountsReact      from '../../../lib/AccountsReact'
 
-const { config } = AccountsReact // default configuration object
+const { config } = AccountsReact
 
 describe('<BaseForm />', () => {
 
