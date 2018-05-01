@@ -67,10 +67,11 @@ describe('ForgotPwd Form', () => {
       instance.setState({ email: 'valid@email.com' })
       instance.onSubmit()
 
+      // onSubmitHook is called after server reponse
       setTimeout(() => {
         expect(spy.calledOnce).to.equal(true)
         done()
-      }, 100)
+      }, 50)
     })
   })
 
