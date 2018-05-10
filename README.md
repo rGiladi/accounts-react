@@ -1,12 +1,6 @@
 # **Meteor Accounts UI for React**
 
-Live example: https://react-accounts-demo.herokuapp.com/
-
 `meteor add meteoreact:accounts`
-
-right now you will also have to `npm install --save-dev deepmerge`, this will be fixed soon
-
-Feel free to ask anything, open issues and create some pull requests.
 
 **A huge credit goes to the [`useraccounts`](https://github.com/meteor-useraccounts/core) package and the people behind it.**
 
