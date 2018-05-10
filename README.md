@@ -5,7 +5,7 @@
 **A huge credit goes to the [`useraccounts`](https://github.com/meteor-useraccounts/core) package and the people behind it.**
 
 This package has been created to be used in one of my projects which was purely React.
-Although the original useraccounts package [can be used](https://www.meteor.com/tutorials/react/adding-user-accounts) in react, it is dependent on blaze and jquery which are both useless when developing with react.
+Although the original useraccounts package [can be used](https://www.meteor.com/tutorials/react/adding-user-accounts) in react, it depends on blaze and jquery which are both useless when developing with react.
 
 Right now, you might find that there are several features which hasn't been included in this package. Please open an issue if you need a feature and think it will benefit the community.
 
