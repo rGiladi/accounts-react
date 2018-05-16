@@ -41,7 +41,7 @@ This package has multiple goals:
 
 3. Make sense. The codebase should be understandable and easy to modify.
 
-4. Be Actively maintained.
+4. Stay actively maintained.
 
 
 <a name='Setup' />
