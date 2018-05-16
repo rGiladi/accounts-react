@@ -187,6 +187,7 @@ The following is a list with details about each configurable option.
 | continuousValidation	      | Boolean	 | false     | Validate input as the user type (on every "onChange" event)
 | negativeValidation          | Boolean  | true      | Validate input on every "onBlur" event (only after first data insertion)
 | [**Hooks**](#Hooks)         |          |           |  
+| onLoginHook                 | Function | A function to be called after a successful login
 | onLogoutHook                | Function |           | Triggered by calling AccountsReact.logout()
 | onSubmitHook                | Function |           | A function to be called after a form submission. It takes 2 arguments (error, state).
 | preSignupHook               | Function |           | A function to be called before calling the "createUser" method. It takes 2 arguments (password, info). Password is the raw password (before hashing), info is the object with all the data about the new user (you can modify it directly)
