@@ -13,7 +13,8 @@ Package.onUse(api => {
     'ecmascript',
     'accounts-base',
     'accounts-password',
-    'mdg:validated-method@1.1.0'
+    'mdg:validated-method@1.1.0',
+    'check'
   ], ['client', 'server'])
 
   api.use('react-meteor-data@0.2.16', 'client')
