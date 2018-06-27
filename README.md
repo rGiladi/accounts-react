@@ -47,6 +47,9 @@ This package has multiple goals:
 <a name='Setup' />
 
 ## Setup
+**Important** - Please note that you must provide a set of components either by using one of the versions below or [by adding your own](#Override-Styling)
+
+Also note that it's mandatory to call `AccountsReact.configure` on both client/server even with an empty object!
 
 <a name='Styled' />
 
