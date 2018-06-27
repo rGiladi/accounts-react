@@ -52,8 +52,8 @@ This package has multiple goals:
 
 ### Styled versions
 Pick the package that suit your app. ([Create it if it doesn't exist!](https://github.com/royGil/accounts-react/issues/6))
-* [meteoreact:unstyled](https://github.com/royGil/accounts-unstyled)
-* [meteoreact:semantic-ui](https://github.com/royGil/accounts-semantic)
+* [meteoreact:accounts-unstyled](https://github.com/royGil/accounts-unstyled)
+* [meteoreact:accounts-semantic](https://github.com/royGil/accounts-semantic)
 
 
 *If you've created a package and want to include it here, please open a pull request with a link to the package on [atmoshperejs](https://atmospherejs.com/)*
