@@ -9,17 +9,15 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "plugins": [
-      "react"
-  ],
+  "plugins": ["react"],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
-  globals: {
-    'Meteor': true,
-    'document': true,
-    'describe': true,
-    'it': true
+  "globals": {
+    "Meteor": true,
+    "document": true,
+    "describe": true,
+    "it": true
   },
-  rules: {
+  "rules": {
     "react/prop-types": 0
   }
 }

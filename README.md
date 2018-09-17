@@ -47,13 +47,16 @@ This package has multiple goals:
 <a name='Setup' />
 
 ## Setup
+**Important** - Please note that you must provide a set of components either by using one of the versions below or [by adding your own](#Override-Styling)
+
+Also note that it's mandatory to call `AccountsReact.configure` on both client/server even with an empty object!
 
 <a name='Styled' />
 
 ### Styled versions
 Pick the package that suit your app. ([Create it if it doesn't exist!](https://github.com/royGil/accounts-react/issues/6))
-* [meteoreact:unstyled](https://github.com/royGil/accounts-unstyled)
-* [meteoreact:semantic-ui](https://github.com/royGil/accounts-semantic)
+* [meteoreact:accounts-unstyled](https://github.com/royGil/accounts-unstyled)
+* [meteoreact:accounts-semantic](https://github.com/royGil/accounts-semantic)
 
 
 *If you've created a package and want to include it here, please open a pull request with a link to the package on [atmoshperejs](https://atmospherejs.com/)*
@@ -87,6 +90,7 @@ class Authentication extends Component {
         <Route exact path='/forgot-password'  component={arState} />
         <Route exact path='/change-password'  component={arState} />
         <Route exact path='/reset-password/:token' component={arState} />
+        <Route exact path='/resend-verification'   component={arState} />
       </Switch>
     )
   }
@@ -149,6 +153,7 @@ Currently available states are:
 | resetPwd  | Set a new password (After reset, a "token" prop must be passed to AccountsReactComponent)
 | signIn    | Login form
 | signUp    | Registration form
+| resendVerification | Resend email with verification link
 
 <a name='Configuration' />
 
@@ -175,12 +180,14 @@ The following is a list with details about each configurable option.
 | lowercaseUsername           | Boolean  | false     | Transform username field to lowercase upon registration
 | loginAfterSignup            | Boolean  | true      | Login automatically after sign up
 | overrideLoginErrors         | Boolean  | true      | Show general error on failed login (without specifying which field was wrong)
-| sendVerificationEmail       | Boolean  | false     | Send email verification after successful registration
+| sendVerificationEmail       | Boolean  | true      | Send email verification after successful registration
 | setDenyRules                | Boolean  | true      | Apply default deny rules on Meteor.users collection
+| disableConfigureLoginService | Boolean | true      | Disable `configureLoginService()` insecure method
 | **Appearance**              |          |           |
 | hideSignInLink	            | Boolean  | false	   | When set to true, asks to never show the link to the sign in page
 | hideSignUpLink	            | Boolean	 | false	   | When set to true, asks to never show the link to the sign up page
 | showForgotPasswordLink	    | Boolean	 | false	   | Specifies whether to display a link to the forgot password page/form
+| showResendVerificationLink  | Boolean	 | false	   | Specifies whether to display a link to the resend verification page/form
 | showLabels                  |	Boolean	 | true	     | Specifies whether to display text labels above input elements
 | showPlaceholders	          | Boolean	 | true	     | Specifies whether to display place-holder text inside input elements
 | **Client side validation**  |          |           |
@@ -351,7 +358,8 @@ The default object used is the following
    signUp: '/sign-up',
    forgotPwd: '/forgot-password',
    changePwd: '/change-password',
-   resetPwd: '/reset-password'
+   resetPwd: '/reset-password',
+   resendVerification: '/resend-verification'
   }
 ```
 
@@ -391,6 +399,7 @@ The supported properties are listed in the following table.
 | placeholder          | String           |          | The field's (input) placeholder text. The place-holder is shown only if showPlaceholders option is set to true
 | re                   | RegExp           |          | Specify a regular expression to validate against. (example below)
 | required             | Boolean          |          | If set to true the corresponding field cannot be left blank
+| autocomplete         | String           |          | `<input>` autocomplete tag value
 
 **The original user accounts package supports several more properties. Pull requests are more then welcome!**
 
@@ -463,7 +472,8 @@ AccountsReact.addFields('signUp', [
     minLength: 4,
     maxLength: 70,
     required: true,
-    errStr: 'This field must contain at least 4 characters and no more than 70'
+    errStr: 'This field must contain at least 4 characters and no more than 70',
+    autocomplete: 'name'
   }
 ])
 ```
