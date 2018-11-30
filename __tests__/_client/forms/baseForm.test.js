@@ -2,6 +2,7 @@ import React              from 'react'
 import { shallow, mount } from 'enzyme'
 import { expect }         from 'chai'
 import sinon              from 'sinon'
+import { T9n }            from 'meteor-accounts-t9n'
 import BaseForm           from '../../../lib/AccountsReactComponent/baseForm'
 import AccountsReact      from '../../../lib/AccountsReact'
 
@@ -40,6 +41,7 @@ describe('<BaseForm />', () => {
   })
 
   it('should not render the title of the current state if not defined', () => {
+    props.defaults.translations.title[props.currentState] = '' // remove translation for the title
     props.defaults.texts.title[props.currentState] = '' // remove text for the title
     const wrapper = mount(<BaseForm {...props} />)
 
