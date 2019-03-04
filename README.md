@@ -174,7 +174,7 @@ The following is a list with details about each configurable option.
 |confirmPassword	            | Boolean	 | true	     | Ask the password twice for confirmation (only on sign up)
 | defaultState                | String   | 'signIn'  | The state to use if no route has been declared (via route or prop)
 | disableForgotPassword       | Boolean  | false     | Disable the option the call Accounts.forgotPassword
-| enablePasswordChange        | Boolean  | true      | Make the changePwd state available, you can either set it to false or just don't set a route for it.
+| enablePasswordChange        | Boolean  | false      | Make the changePwd state available, you can either set it to false or just don't set a route for it.
 | focusFirstInput             | Boolean  | !Meteor.isCordova | Whether to focus the first input when a form is rendered.
 | forbidClientAccountCreation | Boolean  | false     | Dont allow user creation on the client. If set to true - no sign up link/form will be available.
 | lowercaseUsername           | Boolean  | false     | Transform username field to lowercase upon registration
