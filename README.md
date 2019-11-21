@@ -1,3 +1,5 @@
+# ** This package is not maintained anymore **
+
 # **Meteor Accounts UI for React**
 
 `meteor add meteoreact:accounts`
