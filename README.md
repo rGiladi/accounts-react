@@ -490,12 +490,27 @@ This functionality is not implemented yet, You can [help](https://github.com/roy
 #### Edit Fields
 This functionality is not implemented yet, You can [help](https://github.com/royGil/accounts-react/issues/4)
 
+<a name='Language' />
+
+### Translation
+
+Configuring the language of the texts to be used by the forms is done via the `AccountsReact.configure` function.
+
+
+```javascript
+import { AccountsReact } from 'meteor/meteoreact:accounts'
+AccountsReact.configure({
+  language: 'de'
+})
+```
+
+The supported languages are those defined in the [meteor-accounts-t9n](https://github.com/softwarerero/meteor-accounts-t9n) package.
 
 <a name='Texts' />
 
 ### Texts
 
-Configuring the text to be used by the forms is done via the `AccountsReact.configure` function.
+In addition to configuring the language for texts to be used by the forms, they can also be configured independently via the `AccountsReact.configure` function.
 
 The default configuration object contains a `texts` property which you can view [here](https://github.com/royGil/accounts-react/blob/master/lib/AccountsReact.js#L206)
 
